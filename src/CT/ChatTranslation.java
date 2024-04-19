@@ -62,9 +62,6 @@ public class ChatTranslation extends Plugin {
         Seq<String> locales = new Seq<>();
         Groups.player.each(p3 -> locales.addUnique(p3.locale.substring(0,2)));
         locales.addUnique("es");
-        locales.addUnique("ru");
-        locales.addUnique("en");
-        locales.addUnique("vi");
         for (int i = 0; i < locales.size; i++)
             Argon.fire(new TranslateMessage(message, locales.get(i), i, p.id));
     }
