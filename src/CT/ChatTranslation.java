@@ -45,12 +45,16 @@ public class ChatTranslation extends Plugin {
                     if (sender == null) return;
                     Log.debug("distributing message (@ -> @)", event.originalLocale, event.locale);
                     //send message
-                    String full = Vars.netServer.chatFormatter.format(sender, event.original);
-                    if (event.originalLocale.charAt(0) != event.locale.charAt(0) || event.originalLocale.charAt(1) != event.locale.charAt(1)) full += "\n[lightgray]" + event.translated;
+                    String message;
+                    if (event.originalLocale().charAt(0) != event.locale().charAt(0) || event.originalLocale().charAt(1) != event.locale().charAt(1) || !event.original().equals(event.translated())) {
+                        message = Vars.netServer.chatFormatter.format(sender, event.translated) + "\n[lightgray][" + event.originalLocale() + "] " + event.original();
+                    } else {
+                        message = Vars.netServer.chatFormatter.format(sender, event.original);
+                    }
+
                     for (Player p : Groups.player)
                         if (p.locale.charAt(0) == event.locale.charAt(0) && p.locale.charAt(1) == event.locale.charAt(1))
-                            Call.sendMessage(p.con, full, event.translated, sender);
-                    //p.locale.equals(event.locale)
+                            Call.sendMessage(p.con, message, event.translated, sender);
                 });
             });
         });
