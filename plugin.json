@@ -3,7 +3,7 @@
   "displayName": "Chat Translation",
   "author": "Atomic Laboratories",
   "main": "CT.ChatTranslation",
-  "description": "Translate Chat through the power of API's",
+  "description": "Translate Chat through the power of API",
   "version": "1.0.0",
   "dependencies": [
     "argon-rabbitmq"
